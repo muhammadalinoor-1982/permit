@@ -61,27 +61,15 @@ class MulDelController extends Controller
         session()->flash('message','MulDel Deleted successfully');
         return redirect()->route('MulDel.view');
     }
-    /*public function multipleusersdelete(Request $request)
-    {
-        $data['id'] = $request->id;
-        $data['Image'] = $request->image;
-        if(file_exists('public/AllImages/MulDelImages/'.$data->image) AND !empty($data->image)){
-            unlink('public/AllImages/MulDelImages/'.$data->image);
-        }
-        foreach ($data as $del)
-        {
-            MulDel::where(['id','image'], $del)->delete();
-        }
-        session()->flash('message','Selected Data has been Deleted successfully');
-        return redirect()->route('MulDel.view');
-    }*/
     public function multipleusersdelete(Request $request)
     {
         $id = $request->id;
         foreach ($id as $del)
         {
             MulDel::where('id', $del)->delete();
+            unlink('public/AllImages/MulDelImages/'.$request->img[$del]);
         }
+
         session()->flash('message','Selected Data has been Deleted successfully');
         return redirect()->route('MulDel.view');
     }

@@ -21,6 +21,7 @@
         @foreach($mul_dels as $del)
             <tr>
                 <td><input name='id[]' type="checkbox" id="checkItem" value="{{ $del->id }}"></td>
+                <td><input name="img[{{ $del->id }}]" type="hidden" value="{{ $del->image }}" ></td>
                 <td>{{ $serial++ }}</td>
                 <td>{{ $del->name }}</td>
                 <td>{{ $del->phone }}</td>
